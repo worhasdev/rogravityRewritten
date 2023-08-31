@@ -15,6 +15,21 @@ Anyone who uses this gravity controller/system must credit me, Krish "worhas".
 
 **I will be updating this system every now and then, fixing bugs and making things more efficient.**
 
+
+## Physics explanation + Extra theory
+
+*This will go over pretty much everything that makes the system actually tick, so be ready*
+
+### Vectors, Velocities and Gravity
+
+
+### Rays
+
+
+### Detection (falls under rays)
+
+
+
 ## Documentation
 
 *TBD*
