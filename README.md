@@ -34,7 +34,10 @@ Anyone who uses this gravity controller/system must credit me, Krish "worhas". A
 
 Gravity:
 
-In order to overwrite ROBLOX's default set gravity, we find the property "Gravity" under the workspace in the explorer. Set this property to 0. Now there will be no gravity to affect the players movement.
+In order to overwrite ROBLOX's default set gravity, we find the property "Gravity" under the workspace in the explorer. Set this property to 0. Now there will be no gravity to affect the players movement. We can set this either manually or have it referenced by a line in the system as a precautionary setup. This has already been done for you.
+```lua
+game.Workspace.Gravity = 0
+```
 
 Following on from this, the player is still able to jump and never return back to the ground. Once the "Jump" property, under the players humanoid is set to "true", a jumping force is applied to the player which sends them upwards. We cannot directly access this force, and we would rather have more customisability with the entire gravity system; we resort to ultimately writing a custom "ControlScript" seperate to the one ROBLOX provides that allows for basic movement and controls that are standard to the ROBLOX player.
 
