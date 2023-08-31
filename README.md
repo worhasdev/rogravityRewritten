@@ -43,6 +43,12 @@ Following on from this, the player is still able to jump and never return back t
 
 Keep in mind the process of making this control script, in my case will allow for any other local or serverscripts to interact with the player as they would usually, without any side-effects.
 
+In order to create a control script, and keep things organised I used an OOP approach. OOP is object - oriented programming. I will not elaborate further onto it, but if you do want to understand more about it please see https://www.lua.org/pil/16.html
+
+Control Script, Including Vector and Velocity handling:
+
+*TBD*
+
 ### Rays
 
 
