@@ -1,4 +1,4 @@
-![image](https://github.com/worhasdev/rogravityRewritten/assets/131204733/7e1db407-64fd-450c-b189-1f72f20bbf91)# ROBLOX gravity system (CURRENTLY INDEV)
+# ROBLOX gravity system (CURRENTLY INDEV)
 ## Roadmap and design plan
 
 This originally started as a project developed by myself for a smaller development group that required "slope physics" that replicate those seen in many of the popular "Sonic The Hedgehog" titles,
