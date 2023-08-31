@@ -1,4 +1,4 @@
-# ROBLOX's default gravity system, rewritten
+# ROBLOX gravity system (CURRENTLY INDEV)
 ## Roadmap and design plan
 
 This originally started as a project developed by myself for a smaller development group that required "slope physics" that replicate those seen in many of the popular "Sonic The Hedgehog" titles,
