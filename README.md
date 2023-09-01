@@ -47,16 +47,137 @@ Keep in mind the process of making this control script, in my case will allow fo
 
 In order to create a control script, and keep things organised I used an OOP approach. OOP is object - oriented programming. I will not elaborate further onto it, but if you do want to understand more about it please see https://www.lua.org/pil/16.html
 
-### Control Script, Including Vector and Velocity handling:
+### Control Script
+
+
+
+### Rays, Velocities and Vectors
+
+Since the main development plan was to follow OOP principles in order to organise the code, such that it has better expandability and better understandablilty, I created a utility module script, that contains more than enough functions to have the physics achieve the primary goal, orientation and stick. I will elaborate further on why we have more functions than what is needed later on.
+
+See https://create.roblox.com/docs/reference/engine/classes/ModuleScript for more information on modulescripts.
+
+I first began, with Vectors in mind. Primarily, you'd want to be able to manipulate vectors by performing basic arithmetic on them; hence we create methods that handle basic arithmetic for the vectors that will be used in order to manipulate the position or velocity of the player.
+
+```lua
+utils.Vector3 = {}
+utils.Vector3.new = function(x, y, z) --primarily used for diagnostics
+	return Vector3.new(x, y, z)
+end
+
+utils.Vector3.addX = function(vec, x)
+	return Vector3.new(vec.x + x, vec.y, vec.z)
+end
+
+utils.Vector3.addY = function(vec, y)
+	return Vector3.new(vec.x, vec.y + y, vec.z)
+end
+
+utils.Vector3.addZ = function(vec, z)
+	return Vector3.new(vec.x, vec.y, vec.z + z)
+end
+
+utils.Vector3.subtractX = function(vec, x)
+	return Vector3.new(vec.x - x, vec.y, vec.z)
+end
+
+utils.Vector3.subtractY = function(vec, y)
+	return Vector3.new(vec.x, vec.y - y, vec.z)
+end
+
+utils.Vector3.subtractZ = function(vec, z)
+	return Vector3.new(vec.x, vec.y, vec.z - z)
+end
+
+utils.Vector3.multiplyX = function(vec, x)
+	return Vector3.new(vec.x * x, vec.y, vec.z)
+end
+
+utils.Vector3.multiplyY = function(vec, y)
+	return Vector3.new(vec.x, vec.y * y, vec.z)
+end
+
+utils.Vector3.multiplyZ = function(vec, z)
+	return Vector3.new(vec.x, vec.y, vec.z * z)
+end
+
+utils.Vector3.divideX = function(vec, x)
+	if x == 0 then
+		return Vector3.new(0, vec.y, vec.z)
+    error("Cannot return vector value when divided by nil") --throw an error for dividing a vector by zero
+	end
+	return Vector3.new(vec.x / x, vec.y, vec.z)
+end
+
+utils.Vector3.divideY = function(vec, y)
+	if y == 0 then
+		return Vector3.new(vec.x, 0, vec.z)
+    error("Cannot return vector value when divided by nil") --throw an error for dividing a vector by zero
+	end
+	return Vector3.new(vec.x, vec.y / y, vec.z)
+end
+
+utils.Vector3.divideZ = function(vec, z)
+	if z == 0 then
+		return Vector3.new(vec.x, vec.y, 0)
+    error("Cannot return vector value when divided by nil") --throw an error for dividing a vector by zero
+	end
+	return Vector3.new(vec.x, vec.y, vec.z / z)
+end
+```
+
+Now that the Vector methods are defined under their own construct table named "Vector3", we can move onto the math methods, which in themselves are pretty extraneous, except for one which is inadvertently required. (The reason I say it is inadvertently required is because it is not expected to be used anywhere but is vital to the system.)
+
+```lua
+utils.Math = {}
+utils.Math.clamp = function(value, min, max)
+	return math.max(min, math.min(max, value))
+end
+
+utils.Math.lerp = function(start, finish, alpha)
+	return start + (finish - start) * utils.Math.clamp(alpha, 0, 1)
+end
+```
+EDIT: As of 01/09/2023 the math functions have been stripped down to only what is necessary for the functions of the system.
+
+As of the removal of any unnecessary bulk in the math construct table, the only thing that remains is the lerp. Lerping or a "lerp", is an abbreviation for Linear Interpolation, which simply put is the process of smoothly transitioning between one point to another, based on an "interpolant" which is a constant clamped between 0 and 1. The constant acts as a fractional value that finds that specific point between the two **start** and **finish** values. To learn more about linear interpolation, and the math behind it: https://en.wikipedia.org/wiki/Linear_interpolation
+
+To conclude with the utilities script, I had to add some form of raycast handling, in order to detect and change player states, among other things.
+
+```lua
+utils.Raycast = {}
+utils.Raycast.raycast = function(point, direction, whitelist, water)
+	local ray = Ray.new(point, direction)
+	local hit, pos, nor, mat = workspace:FindPartOnRayWithWhitelist(ray, whitelist, water)
+	return hit, pos, nor, mat
+end
+
+utils.Raycast.raycastPoints = function(point, to, whitelist, water)
+	local ray = Ray.new(point, to - point)
+	local hit, pos, nor, mat = workspace:FindPartOnRayWithWhitelist(ray, whitelist, water)
+	return hit, pos, nor, mat
+end
+
+utils.Raycast.raycastAll = function(point, direction, whitelist, water)
+	local ray = Ray.new(point, direction)
+	local hits = workspace:FindPartsInRayWithWhitelist(ray, whitelist, water)
+	return hits
+end
+
+utils.Raycast.raycastAllPoints = function(point, to, whitelist, water)
+	local ray = Ray.new(point, to - point)
+	local hits = workspace:FindPartsInRayWithWhitelist(ray, whitelist, water)
+	return hits
+end
+```
+
+Under the Raycast construct table, there are methods that conduct raycasts in different ways. These will all be useful in handling the detection for the physics.
+
+*There are string manipulation methods present in the utilities module script, but they aren't worth mentioning nor explaining since they serve no real purpose as of now.*
+
+**Next, the explanation of the theory behind the physics, how they work, and how they are expansive.**
 
 *TBD*
-
-### Rays
-
-
-### Detection (falls under rays)
-
-
 
 ## Documentation
 
