@@ -36,6 +36,8 @@ Anyone who uses this gravity controller/system must credit me, Krish "worhas". A
 Gravity:
 
 In order to overwrite ROBLOX's default set gravity, we find the property "Gravity" under the workspace in the explorer. Set this property to 0. Now there will be no gravity to affect the players movement. We can set this either manually or have it referenced by a line in the system as a precautionary setup. This has already been done for you.
+![image](https://github.com/worhasdev/rogravityRewritten/assets/131204733/20cc1546-bba1-4b62-b59b-6c55bfd7c6c6)
+
 ```lua
 game.Workspace.Gravity = 0
 ```
