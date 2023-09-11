@@ -177,6 +177,9 @@ Under the Raycast construct table, there are methods that conduct raycasts in di
 
 **Next, the explanation of the theory behind the physics, how they work, and how they are expansive.**
 
+When it comes to vectors and forces, we must understand the basic logic behind how the system would work.
+Applying a downwards force on the player towards the floor, as they orient based on the surface they stand on generally would be the best way to go.
+
 *TBD*
 
 ## Documentation
