@@ -29,7 +29,7 @@ Anyone who uses this gravity controller/system must credit me, Krish "worhas". A
 
 ## Theory and design plan
 *This will explain in-depth, everything that allows the system to function and the physics, math and logic behind it all.*
-*Disclaimer: This is purely for those who have the intent of editing this system in order to achieve radically different outcomes from the system, or for those who are simply just interested.*
+*Disclaimer: This is purely for those who have the intent of editing this system in order to achieve radically different outcomes from the systems main intentions, or for those who are simply just interested.*
 
 ### Vectors, Velocities and Gravity
 
@@ -178,7 +178,11 @@ Under the Raycast construct table, there are methods that conduct raycasts in di
 **Next, the explanation of the theory behind the physics, how they work, and how they are expansive.**
 
 When it comes to vectors and forces, we must understand the basic logic behind how the system would work.
-Applying a downwards force on the player towards the floor, as they orient based on the surface they stand on generally would be the best way to go.
+Applying a downwards force on the player towards the floor, as they orient based on the surface they stand on generally would be the best way to go about solving the gravity.
+
+Establishing public player variables that can be manipulated by any script, which will then effect the player --> wip
+
+
 
 *TBD*
 
